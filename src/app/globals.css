@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #FFFFFF;
+    --foreground: #0A192F;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary-light selection:text-navy;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Modern gradient mesh background */
+  .bg-gradient-mesh {
+    background: radial-gradient(at 40% 20%, rgba(0, 102, 204, 0.12) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(255, 136, 0, 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(0, 102, 204, 0.06) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(255, 136, 0, 0.06) 0px, transparent 50%);
+  }
+
+  /* Floating orb animation */
+  @keyframes float-orb {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    33% { transform: translate(30px, -20px) scale(1.05); opacity: 0.8; }
+    66% { transform: translate(-20px, 20px) scale(0.95); opacity: 0.5; }
+  }
+
+  .animate-float-orb {
+    animation: float-orb 8s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+  }
+
+  /* Gradient text animation */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease infinite;
+  }
+
+  /* Glow pulse for CTA */
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 40px -10px rgba(255, 136, 0, 0.5); }
+    50% { box-shadow: 0 0 60px -5px rgba(255, 136, 0, 0.7); }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2.5s ease-in-out infinite;
+  }
+
+  /* Grid pattern */
+  .bg-grid-pattern {
+    background-image: linear-gradient(rgba(0, 102, 204, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
