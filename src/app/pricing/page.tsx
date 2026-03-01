@@ -1,11 +1,29 @@
 "use client"
 
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
-import { Check } from 'lucide-react'
+import { Check, ArrowRight } from 'lucide-react'
+import { setPackage, addAddOn, setEnquiry, getEnquiry } from '@/lib/enquiry'
 
 export default function Pricing() {
+    const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
+
+    const router = useRouter()
+
+    const handleSelectPackage = (pkgName: string) => {
+        const curr = getEnquiry()
+        setEnquiry({ ...curr, package: pkgName, addOns: [...new Set([...curr.addOns, ...selectedAddOns])] })
+        router.push('/contact')
+    }
+
+    const toggleAddOn = (name: string) => {
+        setSelectedAddOns(prev =>
+            prev.includes(name) ? prev.filter(a => a !== name) : [...prev, name]
+        )
+    }
     const packages = [
         {
             name: 'Starter',
@@ -113,8 +131,12 @@ export default function Pricing() {
                                         </li>
                                     ))}
                                 </ul>
-                                <Button variant={pkg.popular ? 'primary' : 'outline'} className="w-full" href="/contact">
-                                    Get Started
+                                <Button
+                                    variant={pkg.popular ? 'primary' : 'outline'}
+                                    className="w-full"
+                                    onClick={() => handleSelectPackage(pkg.name)}
+                                >
+                                    Get Started <ArrowRight className="w-4 h-4 ml-2" />
                                 </Button>
                             </Card>
                         </motion.div>
@@ -122,15 +144,25 @@ export default function Pricing() {
                 </div>
 
                 <div className="max-w-3xl mx-auto bg-neutral-50 p-8 rounded-3xl border border-neutral-200">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Popular Add-ons</h2>
+                    <h2 className="text-2xl font-bold mb-2 text-center">Popular Add-ons</h2>
+                    <p className="text-neutral-500 text-center mb-6 text-sm">Select add-ons and click Get Started above to include them in your enquiry</p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {addOns.map(addon => (
-                            <div key={addon.name} className="flex justify-between items-center bg-white p-4 rounded-xl border border-neutral-100">
+                            <button
+                                key={addon.name}
+                                type="button"
+                                onClick={() => toggleAddOn(addon.name)}
+                                className={`flex justify-between items-center p-4 rounded-xl border text-left transition-all ${selectedAddOns.includes(addon.name) ? 'bg-primary/10 border-primary ring-2 ring-primary/30' : 'bg-white border-neutral-100 hover:border-primary/50'}`}
+                            >
                                 <span className="font-medium text-neutral-900">{addon.name}</span>
-                                <span className="text-primary font-bold">{addon.price}</span>
-                            </div>
+                                <span className="text-primary font-bold flex items-center gap-2">
+                                    {addon.price}
+                                    {selectedAddOns.includes(addon.name) && <Check className="w-5 h-5" />}
+                                </span>
+                            </button>
                         ))}
                     </div>
+                    <p className="text-sm text-neutral-500 mt-4 text-center">Selected add-ons will be included when you proceed to the contact form.</p>
                 </div>
             </div>
         </div>

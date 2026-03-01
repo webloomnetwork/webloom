@@ -1,11 +1,19 @@
 "use client"
 
+import { useRouter } from 'next/navigation'
 import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
-import { Globe, Palette, Rocket, Bot, ArrowRight } from 'lucide-react'
+import { Globe, Palette, Rocket, Bot, ArrowRight, Plus } from 'lucide-react'
+import { addService } from '@/lib/enquiry'
 
 export default function Services() {
+    const router = useRouter()
+
+    const handleAddToEnquiry = (serviceTitle: string) => {
+        addService(serviceTitle)
+        router.push('/contact')
+    }
     const serviceCategories = [
         {
             category: 'Websites',
@@ -90,12 +98,21 @@ export default function Services() {
                                         viewport={{ once: true }}
                                         transition={{ delay: idy * 0.05 }}
                                     >
-                                        <Card className="h-full flex flex-col">
+                                        <Card className="h-full flex flex-col group">
                                             <h3 className="text-xl font-bold mb-3">{item.title}</h3>
                                             <p className="text-neutral-500 mb-6 flex-grow">{item.desc}</p>
-                                            <Button variant="ghost" href="/contact" className="!px-0 !justify-start text-primary hover:bg-transparent">
-                                                Enquire <ArrowRight className="w-4 h-4 ml-2" />
-                                            </Button>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleAddToEnquiry(item.title)}
+                                                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium bg-primary text-white hover:bg-primary-dark transition-colors"
+                                                >
+                                                    Add to Enquiry <Plus className="w-4 h-4" />
+                                                </button>
+                                                <Button variant="outline" size="sm" href="/contact" className="shrink-0">
+                                                    View Form <ArrowRight className="w-4 h-4 ml-1" />
+                                                </Button>
+                                            </div>
                                         </Card>
                                     </motion.div>
                                 ))}

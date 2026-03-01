@@ -21,7 +21,7 @@ function FounderAvatar({ founder }: { founder: typeof founders[0] }) {
           alt={founder.name}
           fill
           sizes="(max-width: 768px) 160px, 192px"
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          className="object-cover object-top transition-transform duration-500 group-hover:scale-110"
           onError={() => setHasError(true)}
         />
       ) : (
