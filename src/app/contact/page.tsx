@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MapPin, Mail, MessageCircle, Send, Sparkles } from 'lucide-react'
 import { getEnquiry, setEnquiry, clearEnquiry, getSuggestedAddOns, ADDONS } from '@/lib/enquiry'
+import { WHATSAPP_GROUP_LINK } from '@/lib/config'
 
 const ALL_SERVICES = [
   'Website Design', 'Website Redesign', 'Website Maintenance', 'Domain & Hosting Setup',
@@ -159,8 +160,8 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-bold">WhatsApp</h3>
-                <p className="text-neutral-300">Message us anytime</p>
-                <a href="#" className="text-sm font-medium text-green-400 hover:text-green-300 transition-colors mt-1 inline-block">Start Chat →</a>
+                <p className="text-neutral-300">Message us anytime. Aishwarya or Pradeepan will reply.</p>
+                <a href={WHATSAPP_GROUP_LINK} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-green-400 hover:text-green-300 transition-colors mt-1 inline-block">Start Chat →</a>
               </div>
             </Card>
           </div>
