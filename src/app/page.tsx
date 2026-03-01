@@ -9,10 +9,10 @@ import { ArrowRight, Monitor, PenTool, TrendingUp, Cpu, HeartHandshake } from 'l
 const clientLogos = [
   { src: '/clients/voXYDOCS.png', alt: 'VoxyDocs' },
   { src: '/clients/Icrack.png', alt: 'Icrack' },
-  { src: '/clients/verilett logo - Copy.png', alt: 'Verilett' },
+  { src: '/clients/verilett-logo.png', alt: 'Verilett' },
   { src: '/clients/RoomToLive.png', alt: 'Room To Live' },
-  { src: '/clients/ibo cafe.jpeg', alt: 'ibo cafe' },
-  { src: '/clients/Neighbourweb 4k.png', alt: 'Neighbourweb' },
+  { src: '/clients/ibo-cafe.jpeg', alt: 'ibo cafe' },
+  { src: '/clients/Neighbourweb-4k.png', alt: 'Neighbourweb' },
 ]
 
 const containerVariants = {
@@ -138,7 +138,7 @@ export default function Home() {
             {[...clientLogos, ...clientLogos].map((client, i) => (
               <div
                 key={`${client.alt}-${i}`}
-                className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 group"
+                className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center opacity-90 hover:opacity-100 transition-all duration-500 group"
               >
                 <div className="relative h-10 md:h-12 w-[120px] md:w-[140px]">
                   <Image
