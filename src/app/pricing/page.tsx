@@ -6,7 +6,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { motion } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
-import { setPackage, addAddOn, setEnquiry, getEnquiry } from '@/lib/enquiry'
+import { setEnquiry, getEnquiry } from '@/lib/enquiry'
 
 export default function Pricing() {
     const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
