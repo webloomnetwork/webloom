@@ -38,7 +38,7 @@ export function addService(service: string) {
 
 export function addServices(services: string[]) {
   const curr = getEnquiry()
-  const merged = [...new Set([...curr.services, ...services])]
+  const merged = Array.from(new Set([...curr.services, ...services]))
   setEnquiry({ ...curr, services: merged })
 }
 
@@ -93,5 +93,5 @@ export function getSuggestedAddOns(services: string[]): string[] {
     suggested.push('SEO Content Writing')
   }
 
-  return [...new Set(suggested)]
+  return Array.from(new Set(suggested))
 }

@@ -15,7 +15,7 @@ export default function Pricing() {
 
     const handleSelectPackage = (pkgName: string) => {
         const curr = getEnquiry()
-        setEnquiry({ ...curr, package: pkgName, addOns: [...new Set([...curr.addOns, ...selectedAddOns])] })
+        setEnquiry({ ...curr, package: pkgName, addOns: Array.from(new Set([...curr.addOns, ...selectedAddOns])) })
         router.push('/contact')
     }
 
