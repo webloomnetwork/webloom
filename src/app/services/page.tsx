@@ -55,8 +55,8 @@ export default function Services() {
             <div className="absolute top-0 right-0 w-full h-[600px] bg-gradient-to-bl from-accent/5 via-primary/5 to-transparent -z-10" />
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] -z-10 -translate-x-1/3 -translate-y-1/3" />
 
-            <div className="pt-32 pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center mb-20">
+            <div className="pt-24 pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="text-center mb-12">
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export default function Services() {
                     </motion.p>
                 </div>
 
-                <div className="space-y-20">
+                <div className="space-y-12">
                     {serviceCategories.map((category) => (
                         <section key={category.category}>
                             <div className="flex items-center gap-3 mb-8 pb-4 border-b border-neutral-200">

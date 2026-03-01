@@ -12,10 +12,10 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-neutral-50 pt-20 pb-10 border-t border-neutral-200"
+            className="bg-neutral-50 pt-12 pb-8 border-t border-neutral-200"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="flex items-center gap-2 mb-6 hover:opacity-90 transition-opacity">
                             <Logo />

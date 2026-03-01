@@ -45,9 +45,9 @@ export default function Home() {
   ]
 
   return (
-    <div className="flex flex-col gap-24 pb-24 overflow-x-hidden">
+    <div className="flex flex-col gap-12 md:gap-16 pb-16 overflow-x-hidden">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-40 overflow-hidden flex flex-col items-center justify-center min-h-[90vh]">
+      <section className="relative pt-28 pb-24 overflow-hidden flex flex-col items-center justify-center min-h-[75vh]">
         {/* Dynamic Background */}
         <div className="absolute inset-0 bg-gradient-mesh bg-grid-pattern -z-20" />
         <motion.div
@@ -120,7 +120,7 @@ export default function Home() {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="w-full overflow-hidden py-16"
       >
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-8">
         <motion.div
           whileHover={{ scale: 1.02 }}
           className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 border border-neutral-100 shadow-lg shadow-neutral-100"
@@ -170,7 +170,7 @@ export default function Home() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="text-center mb-20"
+            className="text-center mb-12"
           >
             <motion.span variants={itemVariants} className="text-accent font-semibold tracking-wider uppercase text-sm mb-4 block">
               Our Expertise
@@ -182,7 +182,7 @@ export default function Home() {
               Everything you need to establish and grow your business online.
             </motion.p>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
@@ -216,7 +216,7 @@ export default function Home() {
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -z-10" />
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[80px] -z-10" />
 
-        <div className="text-center mb-24 relative z-10">
+        <div className="text-center mb-12 relative z-10">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -255,7 +255,7 @@ export default function Home() {
             className="hidden md:block absolute top-[44px] left-[10%] right-[10%] h-[4px] bg-gradient-to-r from-primary/20 via-accent/40 to-primary/20 -z-10 rounded-full origin-left"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4">
             {processSteps.map((step, index) => (
               <motion.div
                 key={index}
@@ -297,7 +297,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
-          <div className="text-center mb-20">
+          <div className="text-center mb-12">
             <span className="text-accent font-semibold tracking-wider uppercase text-sm mb-4 block">Testimonials</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
           </div>
@@ -345,7 +345,7 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <motion.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -359,8 +359,8 @@ export default function Home() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-4xl mx-auto px-4 text-center relative z-10"
         >
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-8 text-neutral-900 leading-tight">Ready to weave your success story?</h2>
-          <p className="text-xl md:text-2xl text-neutral-500 mb-12 leading-relaxed">Let&apos;s build something exceptional for your business. Based in Notting Hill, serving London and beyond.</p>
+          <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-neutral-900 leading-tight">Ready to weave your success story?</h2>
+          <p className="text-xl md:text-2xl text-neutral-500 mb-8 leading-relaxed">Let&apos;s build something exceptional for your business. Based in Notting Hill, serving London and beyond.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Button size="lg" href="/contact" className="text-lg h-16 px-12 bg-accent hover:bg-accent-light text-white font-semibold shadow-glow-accent animate-glow-pulse border-none">
               Book a Call Today
