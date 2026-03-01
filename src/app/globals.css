@@ -95,4 +95,14 @@
       linear-gradient(90deg, rgba(0, 102, 204, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  /* Client marquee - slow left-to-right news ticker */
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee-left 45s linear infinite;
+  }
 }

@@ -1,9 +1,19 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { ArrowRight, Monitor, PenTool, TrendingUp, Cpu, HeartHandshake } from 'lucide-react'
+
+const clientLogos = [
+  { src: '/clients/voXYDOCS.png', alt: 'VoxyDocs' },
+  { src: '/clients/Icrack.png', alt: 'Icrack' },
+  { src: '/clients/verilett logo - Copy.png', alt: 'Verilett' },
+  { src: '/clients/RoomToLive.png', alt: 'Room To Live' },
+  { src: '/clients/ibo cafe.jpeg', alt: 'ibo cafe' },
+  { src: '/clients/Neighbourweb 4k.png', alt: 'Neighbourweb' },
+]
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -102,35 +112,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Section */}
+      {/* Trust Section - Client Logo Marquee */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        className="w-full overflow-hidden py-16"
       >
+        <div className="flex justify-center mb-12">
         <motion.div
           whileHover={{ scale: 1.02 }}
-          className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-10 border border-neutral-100 shadow-lg shadow-neutral-100"
+          className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 border border-neutral-100 shadow-lg shadow-neutral-100"
         >
           <HeartHandshake className="w-5 h-5 text-primary" />
-          <span className="font-medium text-neutral-900">Trusted by Notting Hill businesses</span>
+          <span className="font-medium text-neutral-900">Trusted by businesses worldwide</span>
         </motion.div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
-          {[1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              whileHover={{ scale: 1.05, opacity: 1 }}
-              className="h-12 flex items-center justify-center font-bold text-xl text-neutral-400"
-            >
-              Agency Client {i}
-            </motion.div>
-          ))}
+        </div>
+        <div className="relative flex w-full overflow-hidden">
+          {/* Gradient masks for smooth edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          {/* Marquee track */}
+          <div className="flex animate-marquee hover:[animation-play-state:paused]">
+            {[...clientLogos, ...clientLogos].map((client, i) => (
+              <div
+                key={`${client.alt}-${i}`}
+                className="flex-shrink-0 mx-8 md:mx-12 flex items-center justify-center grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-500 group"
+              >
+                <div className="relative h-10 md:h-12 w-[120px] md:w-[140px]">
+                  <Image
+                    src={client.src}
+                    alt={client.alt}
+                    fill
+                    sizes="140px"
+                    className="object-contain object-center"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.section>
 
