@@ -67,7 +67,7 @@ export default function About() {
                                 Web Loom was born out of a simple observation: too many amazing local shops, cafes, and clinics across London and the UK had digital storefronts that didn&apos;t match the quality of their real-world businesses.
                             </p>
                             <p>
-                                Founded by <strong>Aishwarya</strong> and <strong>Pradeepan</strong>, Web Loom brings enterprise-level design and engineering to local high streets. We believe that stunning websites shouldn&apos;t be reserved just for tech giants.
+                                Founded by <strong>Pradeepan</strong> and <strong>Aishwarya</strong>, Web Loom brings enterprise-level design and engineering to local high streets. We believe that stunning websites shouldn&apos;t be reserved just for tech giants.
                             </p>
                             <p>
                                 Whether you need to start taking online bookings, want to rebrand your restaurant, or just need a beautiful online presence to show off your work, we are here to weave it together perfectly.

@@ -37,7 +37,7 @@ export default function Contact() {
   const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
   const [selectedPackage, setSelectedPackage] = useState<string | undefined>()
-  const [status, setStatus] = useState<'' | 'success' | 'error'>('')
+  const [status, setStatus] = useState<'' | 'sending' | 'success' | 'error'>('')
   const [suggestedAddOns, setSuggestedAddOns] = useState<string[]>([])
 
   useEffect(() => {
@@ -74,8 +74,11 @@ export default function Contact() {
     )
   }
 
+  const CONTACT_EMAIL = 'webloomnetwork@gmail.com'
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setStatus('sending')
     const servicesList = selectedServices.join(', ') || 'None selected'
     const addOnsList = selectedAddOns.join(', ') || 'None selected'
 
@@ -90,49 +93,36 @@ export default function Contact() {
       message: formData.message,
     }
 
-    if (FORMSPREE_FORM_ID) {
-      setStatus('success')
-      try {
-        const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
-          method: 'POST',
-          body: JSON.stringify(payload),
-          headers: { 'Content-Type': 'application/json' },
+    const apiUrl = FORMSPREE_FORM_ID
+      ? `https://formspree.io/f/${FORMSPREE_FORM_ID}`
+      : `https://formsubmit.co/ajax/${CONTACT_EMAIL}`
+
+    const body = FORMSPREE_FORM_ID
+      ? JSON.stringify(payload)
+      : JSON.stringify({
+          _subject: `New Enquiry from ${payload.name}`,
+          ...payload,
         })
-        if (res.ok) {
-          setFormData({ name: '', phone: '', email: '', businessType: '', message: '' })
-          setSelectedServices([])
-          setSelectedAddOns([])
-          setSelectedPackage(undefined)
-          clearEnquiry()
-          setTimeout(() => setStatus(''), 4000)
-        } else {
-          setStatus('error')
-        }
-      } catch {
-        setStatus('error')
-      }
-    } else {
-      const body = [
-        `Name: ${payload.name}`,
-        `Phone: ${payload.phone}`,
-        `Email: ${payload.email}`,
-        `Business Type: ${payload.businessType}`,
-        payload.package ? `Package Interest: ${payload.package}` : '',
-        `Services: ${payload.services}`,
-        `Add-ons: ${payload.addOns}`,
-        '',
-        `Message:\n${payload.message}`,
-      ].filter(Boolean).join('%0A')
-      window.location.href = `mailto:webloomnetwork@gmail.com?subject=New Enquiry from ${encodeURIComponent(formData.name)}&body=${body}`
-      setStatus('success')
-      setTimeout(() => {
-        setStatus('')
+
+    try {
+      const res = await fetch(apiUrl, {
+        method: 'POST',
+        body,
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      })
+      if (res.ok) {
+        setStatus('success')
         setFormData({ name: '', phone: '', email: '', businessType: '', message: '' })
         setSelectedServices([])
         setSelectedAddOns([])
         setSelectedPackage(undefined)
         clearEnquiry()
-      }, 1500)
+        setTimeout(() => setStatus(''), 4000)
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
     }
   }
 
@@ -303,14 +293,14 @@ export default function Contact() {
                   <textarea required rows={4} value={formData.message} onChange={e => setFormData({ ...formData, message: e.target.value })} placeholder="Tell us about your project, timeline, and any specific requirements..." className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
                 </div>
 
-                <Button type="submit" className="w-full" disabled={status === 'success'}>
-                  {status === 'success' ? 'Sending...' : <span className="flex items-center gap-2">Send Enquiry <Send className="w-4 h-4" /></span>}
+                <Button type="submit" className="w-full" disabled={status === 'sending' || status === 'success'}>
+                  {status === 'sending' ? 'Sending...' : status === 'success' ? 'Sent!' : <span className="flex items-center gap-2">Send Enquiry <Send className="w-4 h-4" /></span>}
                 </Button>
 
                 <AnimatePresence>
                   {status === 'success' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-green-600 font-medium text-center pt-2">
-                      {FORMSPREE_FORM_ID ? 'Sent! We&apos;ll get back to you within 24 hours.' : 'Opening your email client...'}
+                      Sent! We&apos;ll get back to you within 24 hours.
                     </motion.div>
                   )}
                   {status === 'error' && (
