@@ -94,7 +94,7 @@ export default function Home() {
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-neutral-500 mb-12 max-w-3xl mx-auto text-balance leading-relaxed"
           >
-            Premium digital design & development agency based in Notting Hill, London. Specialized in helping local businesses thrive online.
+            Premium digital design & development agency based in London, UK. Helping businesses across London and beyond thrive online.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -301,11 +301,14 @@ export default function Home() {
             <span className="text-accent font-semibold tracking-wider uppercase text-sm mb-4 block">Testimonials</span>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { text: "Web Loom transformed our local cafe's online presence. We're seeing more walk-ins than ever!", author: "Sarah, The Corner Cafe" },
-              { text: "Pradeepan and Aishwarya were brilliant. They set up our booking system flawlessly.", author: "James, Notting Hill Salon" },
-              { text: "Incredible attention to detail on our branding. They truly care about small businesses.", author: "Elena, Floral Studio" }
+              { text: "Our document workflow needed a proper digital presence. Web Loom built us a sleek, professional site that our clients actually use. London-based and responsive.", author: "VoxyDocs", role: "Document Solutions, London" },
+              { text: "From our first phone repair shop in East London to our booking system—Web Loom understood our growth. Clean, fast, and easy for customers to book.", author: "Icrack", role: "Phone Repairs, London" },
+              { text: "Pradeepan and Aishwarya designed our property letting platform from scratch. Attention to detail and genuine care for London landlords and tenants.", author: "Verilett", role: "Property Lettings, London" },
+              { text: "Room To Live needed a site that matched our brand. Web Loom delivered—modern, trustworthy, and it’s helped us attract quality tenants across London.", author: "Room To Live", role: "Property Rentals, London" },
+              { text: "ibo cafe’s online presence used to be an afterthought. Now we take bookings, show our menu, and get more weekend walk-ins. Exactly what a London cafe needs.", author: "ibo cafe", role: "Cafe, London" },
+              { text: "Neighbourweb connects local London businesses. Web Loom built our platform with the same community-first ethos. Real people, real results.", author: "Neighbourweb", role: "Local Business Network, London" }
             ].map((testimonial, i) => (
               <motion.div
                 key={i}
@@ -332,11 +335,18 @@ export default function Home() {
                 </motion.div>
                 <p className="text-lg mb-8 leading-relaxed text-neutral-200 relative z-10">&quot;{testimonial.text}&quot;</p>
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent opacity-80"
-                  ></motion.div>
-                  <p className="font-semibold">{testimonial.author}</p>
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white/10 shrink-0">
+                    <Image
+                      src={clientLogos.find(c => c.alt === testimonial.author)?.src || '/clients/voXYDOCS.png'}
+                      alt={testimonial.author}
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold">{testimonial.author}</p>
+                    <p className="text-sm text-neutral-400">{testimonial.role}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -360,7 +370,7 @@ export default function Home() {
           className="max-w-4xl mx-auto px-4 text-center relative z-10"
         >
           <h2 className="text-4xl md:text-6xl font-extrabold mb-6 text-neutral-900 leading-tight">Ready to weave your success story?</h2>
-          <p className="text-xl md:text-2xl text-neutral-500 mb-8 leading-relaxed">Let&apos;s build something exceptional for your business. Based in Notting Hill, serving London and beyond.</p>
+          <p className="text-xl md:text-2xl text-neutral-500 mb-8 leading-relaxed">Let&apos;s build something exceptional for your business. Based in London, serving the UK and beyond.</p>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
             <Button size="lg" href="/contact" className="text-lg h-16 px-12 bg-accent hover:bg-accent-light text-white font-semibold shadow-glow-accent animate-glow-pulse border-none">
               Book a Call Today

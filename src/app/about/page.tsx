@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Card } from '@/components/ui/Card'
-import { Heart, Target, Lightbulb, Users } from 'lucide-react'
+import { Heart, Target, Lightbulb, Users, Shield, Zap, Award, MapPin } from 'lucide-react'
 
 const founders = [
+  { name: 'Pradeepan', role: 'Founder', image: '/founders/pradeep.png', fallback: 'P' },
   { name: 'Aishwarya', role: 'Co-Founder', image: '/founders/aish.png', fallback: 'A' },
-  { name: 'Pradeepan', role: 'Co-Founder', image: '/founders/pradeep.png', fallback: 'P' },
 ]
 
 function FounderAvatar({ founder }: { founder: typeof founders[0] }) {
@@ -38,7 +38,7 @@ export default function About() {
         { icon: <Heart className="w-6 h-6" />, title: 'Passion', desc: 'We actually care about how your brand looks and performs.' },
         { icon: <Target className="w-6 h-6" />, title: 'Precision', desc: 'Every pixel and word is placed with absolute intention.' },
         { icon: <Lightbulb className="w-6 h-6" />, title: 'Innovation', desc: 'Bringing modern web standards to everyday businesses.' },
-        { icon: <Users className="w-6 h-6" />, title: 'Community', desc: 'Deeply rooted in supporting our Notting Hill neighbors.' },
+        { icon: <Users className="w-6 h-6" />, title: 'Community', desc: 'Supporting businesses across London and the UK.' },
     ]
 
     return (
@@ -55,7 +55,7 @@ export default function About() {
                             animate={{ opacity: 1, y: 0 }}
                             className="text-5xl font-bold text-neutral-900 mb-6"
                         >
-                            Weaving Digital Magic in <span className="text-primary">Notting Hill</span>.
+                            Weaving Digital Magic in <span className="text-primary">London</span> & Beyond.
                         </motion.h1>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -64,7 +64,7 @@ export default function About() {
                             className="space-y-6 text-lg text-neutral-600"
                         >
                             <p>
-                                Web Loom was born out of a simple observation: too many amazing local shops, cafes, and clinics in our beloved Notting Hill had digital storefronts that didn&apos;t match the quality of their real-world businesses.
+                                Web Loom was born out of a simple observation: too many amazing local shops, cafes, and clinics across London and the UK had digital storefronts that didn&apos;t match the quality of their real-world businesses.
                             </p>
                             <p>
                                 Founded by <strong>Aishwarya</strong> and <strong>Pradeepan</strong>, Web Loom brings enterprise-level design and engineering to local high streets. We believe that stunning websites shouldn&apos;t be reserved just for tech giants.
@@ -123,20 +123,62 @@ export default function About() {
                     ))}
                 </div>
 
-                <div className="bg-primary text-white p-10 rounded-3xl text-center">
-                    <h2 className="text-3xl font-bold mb-6">Why Choose Us?</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                        <div>
-                            <h3 className="font-bold text-primary mb-2">01. Local & Accessible</h3>
-                            <p className="text-neutral-300">We&apos;re right here in London. We can meet for coffee, discuss your goals, and truly understand your market.</p>
+                <div className="bg-primary text-white p-10 rounded-3xl">
+                    <h2 className="text-3xl font-bold mb-10 text-center">Why Choose Us?</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <Shield className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">Transparent Pricing</h3>
+                                <p className="text-neutral-300 text-sm">Fixed quotes, no hidden fees. You know exactly what you pay upfront.</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-bold text-primary mb-2">02. Modern Tech Stack</h3>
-                            <p className="text-neutral-300">Your site will be built with the exact same technologies used by industry leaders, ensuring speed and security.</p>
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <Zap className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">Fast Turnaround</h3>
+                                <p className="text-neutral-300 text-sm">Typically 2–4 weeks from brief to launch. No endless waiting.</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 className="font-bold text-primary mb-2">03. All-in-One Solution</h3>
-                            <p className="text-neutral-300">No need to hire a separate designer, developer, and marketer. We handle the entire process end-to-end.</p>
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <Award className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">You Own Everything</h3>
+                                <p className="text-neutral-300 text-sm">100% ownership of your site, code and assets. No lock-in.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <MapPin className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">UK-Based Support</h3>
+                                <p className="text-neutral-300 text-sm">Real people in London. No outsourced support—direct contact.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <Target className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">Modern & Secure</h3>
+                                <p className="text-neutral-300 text-sm">Industry-standard tech stack. Fast, secure, GDPR-ready.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="shrink-0 w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                <Users className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg mb-2">All-in-One</h3>
+                                <p className="text-neutral-300 text-sm">Design, build and grow—one team. No juggling multiple agencies.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

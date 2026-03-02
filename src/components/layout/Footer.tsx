@@ -24,7 +24,7 @@ export default function Footer() {
                             </span>
                         </Link>
                         <p className="text-neutral-500 max-w-sm mb-6 text-lg">
-                            We weave your brand into a beautiful online presence. Proudly based in Notting Hill, London.
+                            We weave your brand into a beautiful online presence. Proudly based in London, UK.
                         </p>
                         <div className="flex space-x-4 text-neutral-400">
                             <motion.a href="#" whileHover={{ scale: 1.2, y: -2 }} className="hover:text-primary transition-colors inline-block"><Instagram className="w-5 h-5" /></motion.a>
@@ -51,7 +51,7 @@ export default function Footer() {
                         <ul className="space-y-3">
                             <li className="flex items-start text-neutral-500">
                                 <MapPin className="w-5 h-5 mr-3 text-primary shrink-0 mt-0.5" />
-                                <span>Notting Hill, London<br />Walk-ins welcome by appointment</span>
+                                <span>London, UK<br />Available by appointment</span>
                             </li>
                             <li className="flex items-center text-neutral-500">
                                 <Mail className="w-5 h-5 mr-3 text-primary shrink-0" />

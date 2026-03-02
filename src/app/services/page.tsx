@@ -26,7 +26,7 @@ export default function Services() {
                 { title: 'E-commerce Setup', desc: 'Start selling your products online.' },
                 { title: 'Booking System Integration', desc: 'Perfect for salons, clinics, and more.' },
                 { title: 'Event Ticketing Setup', desc: 'Sell tickets directly to your audience.' },
-                { title: 'Google My Business Setup', desc: 'Dominate local Notting Hill searches.' },
+                { title: 'Google My Business Setup', desc: 'Dominate local London & UK searches.' },
             ]
         },
         {
@@ -78,7 +78,7 @@ export default function Services() {
                         transition={{ delay: 0.1 }}
                         className="text-xl text-neutral-500 max-w-2xl mx-auto"
                     >
-                        Comprehensive digital solutions to help your Notting Hill business thrive.
+                        Comprehensive digital solutions to help your business thrive across London and the UK.
                     </motion.p>
                 </div>
 

@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { MapPin, Mail, MessageCircle, Send, Sparkles } from 'lucide-react'
 import { getEnquiry, setEnquiry, clearEnquiry, getSuggestedAddOns, ADDONS } from '@/lib/enquiry'
-import { WHATSAPP_GROUP_LINK } from '@/lib/config'
+import { WHATSAPP_GROUP_LINK, FORMSPREE_FORM_ID } from '@/lib/config'
 
 const ALL_SERVICES = [
   'Website Design', 'Website Redesign', 'Website Maintenance', 'Domain & Hosting Setup',
@@ -17,13 +17,13 @@ const ALL_SERVICES = [
 ]
 
 const ADDON_PRICES: Record<string, string> = {
-  'Website Maintenance & Hosting': '£49/mo',
-  'Logo Design': '£199',
-  'Logo Design Only': '£199',
-  'Menu/Flyer Design': '£149',
-  'SEO Content Writing': '£99/page',
-  'Business Cards & Stationery': 'From £99',
-  'Facebook & Instagram Ads Setup': 'From £199',
+  'Website Maintenance & Hosting': '£39/mo',
+  'Logo Design': '£79',
+  'Logo Design Only': '£79',
+  'Menu/Flyer Design': '£69',
+  'SEO Content Writing': '£49/page',
+  'Business Cards & Stationery': '£49',
+  'Facebook & Instagram Ads Setup': '£99',
 }
 
 export default function Contact() {
@@ -37,7 +37,7 @@ export default function Contact() {
   const [selectedServices, setSelectedServices] = useState<string[]>([])
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([])
   const [selectedPackage, setSelectedPackage] = useState<string | undefined>()
-  const [status, setStatus] = useState<'' | 'success'>('')
+  const [status, setStatus] = useState<'' | 'success' | 'error'>('')
   const [suggestedAddOns, setSuggestedAddOns] = useState<string[]>([])
 
   useEffect(() => {
@@ -57,7 +57,7 @@ export default function Contact() {
   const faqs = [
     { question: 'How long does a typical website take?', answer: 'Most standard websites take 2-4 weeks. E-commerce and complex integrations typically take 4-6 weeks.' },
     { question: 'Do I own the website once it\'s finished?', answer: '100%. Once final payment is made, all designs, code, and assets are fully owned by you.' },
-    { question: 'Can you help with just a logo?', answer: 'Absolutely. We offer standalone branding packages starting from £199.' },
+    { question: 'Can you help with just a logo?', answer: 'Absolutely. We offer standalone logo design from £79.' },
     { question: 'Do you provide website hosting?', answer: 'Yes, we offer ongoing hosting and maintenance packages starting at £49/month so you never have to worry about tech issues.' },
     { question: 'How do payments work?', answer: 'We typically take a 50% deposit to begin work, and 50% upon final completion and launch.' },
   ]
@@ -74,35 +74,66 @@ export default function Contact() {
     )
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
     const servicesList = selectedServices.join(', ') || 'None selected'
     const addOnsList = selectedAddOns.join(', ') || 'None selected'
-    const pkgLine = selectedPackage ? `Package Interest: ${selectedPackage}\n` : ''
 
-    const body = [
-      `Name: ${formData.name}`,
-      `Phone: ${formData.phone}`,
-      `Email: ${formData.email}`,
-      `Business Type: ${formData.businessType}`,
-      pkgLine,
-      `Services Selected: ${servicesList}`,
-      `Add-ons Selected: ${addOnsList}`,
-      '',
-      `Message:\n${formData.message}`,
-    ].filter(Boolean).join('%0A')
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      businessType: formData.businessType,
+      package: selectedPackage || '',
+      services: servicesList,
+      addOns: addOnsList,
+      message: formData.message,
+    }
 
-    setStatus('success')
-    setTimeout(() => {
+    if (FORMSPREE_FORM_ID) {
+      setStatus('success')
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: { 'Content-Type': 'application/json' },
+        })
+        if (res.ok) {
+          setFormData({ name: '', phone: '', email: '', businessType: '', message: '' })
+          setSelectedServices([])
+          setSelectedAddOns([])
+          setSelectedPackage(undefined)
+          clearEnquiry()
+          setTimeout(() => setStatus(''), 4000)
+        } else {
+          setStatus('error')
+        }
+      } catch {
+        setStatus('error')
+      }
+    } else {
+      const body = [
+        `Name: ${payload.name}`,
+        `Phone: ${payload.phone}`,
+        `Email: ${payload.email}`,
+        `Business Type: ${payload.businessType}`,
+        payload.package ? `Package Interest: ${payload.package}` : '',
+        `Services: ${payload.services}`,
+        `Add-ons: ${payload.addOns}`,
+        '',
+        `Message:\n${payload.message}`,
+      ].filter(Boolean).join('%0A')
       window.location.href = `mailto:webloomnetwork@gmail.com?subject=New Enquiry from ${encodeURIComponent(formData.name)}&body=${body}`
-      setStatus('')
-      setFormData({ name: '', phone: '', email: '', businessType: '', message: '' })
-      setSelectedServices([])
-      setSelectedAddOns([])
-      setSelectedPackage(undefined)
-      clearEnquiry()
-    }, 1200)
+      setStatus('success')
+      setTimeout(() => {
+        setStatus('')
+        setFormData({ name: '', phone: '', email: '', businessType: '', message: '' })
+        setSelectedServices([])
+        setSelectedAddOns([])
+        setSelectedPackage(undefined)
+        clearEnquiry()
+      }, 1500)
+    }
   }
 
   const hasWebServices = selectedServices.some(s =>
@@ -140,7 +171,7 @@ export default function Contact() {
               </div>
               <div>
                 <h3 className="font-bold text-neutral-900">Location</h3>
-                <p className="text-neutral-500">Notting Hill, London</p>
+                <p className="text-neutral-500">London, UK</p>
               </div>
             </Card>
 
@@ -273,13 +304,18 @@ export default function Contact() {
                 </div>
 
                 <Button type="submit" className="w-full" disabled={status === 'success'}>
-                  {status === 'success' ? 'Sending...' : <span className="flex items-center gap-2">Send Enquiry to webloomnetwork@gmail.com <Send className="w-4 h-4" /></span>}
+                  {status === 'success' ? 'Sending...' : <span className="flex items-center gap-2">Send Enquiry <Send className="w-4 h-4" /></span>}
                 </Button>
 
                 <AnimatePresence>
                   {status === 'success' && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-green-600 font-medium text-center pt-2">
-                      Opening your email client to send to webloomnetwork@gmail.com...
+                      {FORMSPREE_FORM_ID ? 'Sent! We&apos;ll get back to you within 24 hours.' : 'Opening your email client...'}
+                    </motion.div>
+                  )}
+                  {status === 'error' && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-600 font-medium text-center pt-2">
+                      Something went wrong. Please try again or email us directly.
                     </motion.div>
                   )}
                 </AnimatePresence>

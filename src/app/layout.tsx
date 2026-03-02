@@ -12,7 +12,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: 'Web Loom | Premium Digital Agency in London',
-  description: 'We weave your brand into a beautiful online presence. Located in Notting Hill, London. Specializing in Web Design, Branding, and Growth for local businesses.',
+  description: 'We weave your brand into a beautiful online presence. London, UK. Web Design, Branding & Growth for businesses across the UK.',
 }
 
 export default function RootLayout({

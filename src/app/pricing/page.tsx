@@ -27,7 +27,7 @@ export default function Pricing() {
     const packages = [
         {
             name: 'Starter',
-            price: '£499',
+            price: '£399',
             desc: 'Perfect for small local businesses needing a professional web presence.',
             turnaround: '1-2 weeks',
             features: [
@@ -41,7 +41,7 @@ export default function Pricing() {
         },
         {
             name: 'Growth',
-            price: '£999',
+            price: '£899',
             desc: 'Ideal for growing businesses requiring more features and integrations.',
             turnaround: '2-4 weeks',
             features: [
@@ -55,7 +55,7 @@ export default function Pricing() {
         },
         {
             name: 'Pro',
-            price: 'From £1999',
+            price: '£1499',
             desc: 'Comprehensive digital solution with branding and marketing.',
             turnaround: '4-6 weeks',
             features: [
@@ -70,10 +70,10 @@ export default function Pricing() {
     ]
 
     const addOns = [
-        { name: 'Website Maintenance & Hosting', price: '£49/mo' },
-        { name: 'Logo Design Only', price: '£199' },
-        { name: 'Menu/Flyer Design', price: '£149' },
-        { name: 'SEO Content Writing', price: '£99/page' }
+        { name: 'Website Maintenance & Hosting', price: '£39/mo' },
+        { name: 'Logo Design Only', price: '£79' },
+        { name: 'Menu/Flyer Design', price: '£69' },
+        { name: 'SEO Content Writing', price: '£49/page' }
     ]
 
     return (

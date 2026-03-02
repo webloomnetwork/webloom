@@ -61,12 +61,12 @@ export function clearEnquiry() {
 
 // Smart add-on suggestions based on selected services
 export const ADDONS = [
-  { id: 'maintenance', name: 'Website Maintenance & Hosting', price: '£49/mo' },
-  { id: 'logo', name: 'Logo Design', price: '£199' },
-  { id: 'menu', name: 'Menu/Flyer Design', price: '£149' },
-  { id: 'seo', name: 'SEO Content Writing', price: '£99/page' },
-  { id: 'business-cards', name: 'Business Cards & Stationery', price: 'From £99' },
-  { id: 'ads', name: 'Facebook & Instagram Ads Setup', price: 'From £199' },
+  { id: 'maintenance', name: 'Website Maintenance & Hosting', price: '£39/mo' },
+  { id: 'logo', name: 'Logo Design', price: '£79' },
+  { id: 'menu', name: 'Menu/Flyer Design', price: '£69' },
+  { id: 'seo', name: 'SEO Content Writing', price: '£49/page' },
+  { id: 'business-cards', name: 'Business Cards & Stationery', price: '£49' },
+  { id: 'ads', name: 'Facebook & Instagram Ads Setup', price: '£99' },
 ] as const
 
 export function getSuggestedAddOns(services: string[]): string[] {
